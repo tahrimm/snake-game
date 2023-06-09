@@ -141,30 +141,67 @@ else{
 }
 
 window.requestAnimationFrame(main);
-window.addEventListener('keydown', e =>{
-    inputDir = {x: 0, y: 1} // Start the game
-    moveSound.play();
+window.addEventListener('keydown', handleKeyPress);
+
+function handleKeyPress(e) {
     switch (e.key) {
-        case "ArrowUp":
+        case 'ArrowUp':
             inputDir.x = 0;
             inputDir.y = -1;
             break;
-
-        case "ArrowDown":
+        case 'ArrowDown':
             inputDir.x = 0;
             inputDir.y = 1;
             break;
-
-        case "ArrowLeft":
+        case 'ArrowLeft':
             inputDir.x = -1;
             inputDir.y = 0;
             break;
-
-        case "ArrowRight":
+        case 'ArrowRight':
             inputDir.x = 1;
             inputDir.y = 0;
             break;
         default:
             break;
+    }
+}
+let touchStartX = 0;
+let touchStartY = 0;
+
+window.addEventListener('touchstart', (e) => {
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+});
+
+window.addEventListener('touchend', (e) => {
+    const touchEndX = e.changedTouches[0].clientX;
+    const touchEndY = e.changedTouches[0].clientY;
+
+    const dx = touchEndX - touchStartX;
+    const dy = touchEndY - touchStartY;
+
+    // Determine the primary direction of the swipe
+    if (Math.abs(dx) > Math.abs(dy)) {
+        // Horizontal swipe
+        if (dx > 0) {
+            // Swipe right
+            inputDir.x = 1;
+            inputDir.y = 0;
+        } else {
+            // Swipe left
+            inputDir.x = -1;
+            inputDir.y = 0;
+        }
+    } else {
+        // Vertical swipe
+        if (dy > 0) {
+            // Swipe down
+            inputDir.x = 0;
+            inputDir.y = 1;
+        } else {
+            // Swipe up
+            inputDir.x = 0;
+            inputDir.y = -1;
+        }
     }
 });
