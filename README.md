@@ -46,3 +46,15 @@ npm start
 ```
 
 5. Open your browser and visit `http://localhost:3000` to access the application.
+   
+## Dependencies
+
+This project utilizes Node.js and various npm packages. Make sure to have Node.js installed before running the application.
+
+## Notes
+
+Please note that this application requires specific modules and configurations. Ensure all dependencies are installed as outlined in the `package.json` file before running the application.
+
+For any issues or inquiries, feel free to contact(tahrim124@gmail.com).
+```
+
